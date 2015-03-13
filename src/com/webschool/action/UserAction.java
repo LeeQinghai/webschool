@@ -6,6 +6,7 @@ import java.util.List;
 import com.opensymphony.xwork2.Action;
 import com.webschool.model.User;
 import com.webschool.service.UserService;
+import com.webschool.util.MD5Util;
 
 public class UserAction extends BaseAction {
 	
@@ -142,7 +143,7 @@ public class UserAction extends BaseAction {
 		User user = new User();
 		user.setUserId(userId);
 		user.setUserName(userName);
-		user.setPassword(password);
+		user.setPassword(MD5Util.getMD5(password));
 		user.setPhone(phone);
 		user.setEmail(email);
 		user.setState(1);
