@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<#include "header.html" />
+	<br>
+	<a href="${basePath}user/userList">User List</a>
+	<br>
+	<br>
+	<form action="${basePath}user/editSave" method="post"><br>
+		ID:<input type="text" name="userId" value="${userId!}"/><br>
+		Name:<input type="text" name="userName" value="${userName!}"/><br>
+		password:<input type="password" name="password" value="${password!}" /><br>
+		Tel:<input type="text" name="phone"value="${phone!}"><br>
+		Email:<input type="text" name="email"value="${email!}"><br>
+		<input type="submit" value="save">
+		<input type="hidden" name="id" value="${id!}">
+	</form>
+	
+</body>
+</html>

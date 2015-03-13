@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<#include "header.html" />
+	<br>
+	<form action="${basePath}user/register" method="post"><br>
+		ID:<input type="text" name="userId" value="${userId!}"/><br>
+		Name:<input type="text" name="userName" value="${userName!}"/><br>
+		password:<input type="password" name="password" value="${password!}" /><br>
+		password conform:<input type="password2" name="password2" value="${password2!}" /><br>
+		Tel:<input type="text" name="phone"value="${phone!}"><br>
+		Email:<input type="text" name="email"value="${email!}"><br>
+		<input type="submit" value="Register">
+		<input type="hidden" name="register" value="true">
+	</form>
+	
+</body>
+</html>

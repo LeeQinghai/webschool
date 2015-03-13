@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<constant name="struts.static.browserCache" value="true"/>
+	<constant name="struts.action.extension" value=",action" />
+	
+    <package name="default" namespace="/" extends="struts-default">
+		
+		<interceptors>
+			<interceptor name="authority" class="com.webschool.interceptor.AuthorityInterceptor" >
+				<param name="excludeMethods">login</param>
+			</interceptor>
+			<interceptor-stack name="checkAuthority">
+				<interceptor-ref name="authority"/>
+				<interceptor-ref name="defaultStack"/>
+			</interceptor-stack>
+	  	</interceptors>
+ 		<default-interceptor-ref name="checkAuthority"/>
+ 		
+ 		<default-action-ref name="main"/>
+ 		
+		<global-results>
+			<result name="login" type="freemarker">/WEB-INF/view/login.html</result>
+		</global-results>
+        
+        <action name="main" class="com.webschool.action.BaseAction">
+            <result name="success" type="freemarker">/WEB-INF/view/main.html</result>
+        </action>
+        
+        <action name="login" class="com.webschool.action.LoginAction" method="login">
+            <result name="success" type="freemarker">/WEB-INF/view/main.html</result>
+            <result name="error" type="freemarker">/WEB-INF/view/login.html</result>
+        </action>
+        
+        <action name="logout" class="com.webschool.action.LoginAction" method="logout">
+        	<result name="success" type="freemarker">/WEB-INF/view/login.html</result>
+        </action>
+        
+        
+    </package>
+    
+    <package name="user" namespace="/user" extends="default">
+    	<action name="userList" class="com.webschool.action.UserAction" method="userList">
+        	<result name="success" type="freemarker">/WEB-INF/view/userList.html</result>
+        </action>
+        <action name="register" class="com.webschool.action.UserAction" method="userRegister">
+        	<result name="success" type="redirectAction">userList</result>
+        	<result name="input" type="freemarker">/WEB-INF/view/userRegister.html</result>
+        </action>
+        <action name="edit" class="com.webschool.action.UserAction" method="userEdit">
+        	<result name="success" type="freemarker">/WEB-INF/view/userEdit.html</result>
+        </action>
+        <action name="editSave" class="com.webschool.action.UserAction" method="userEditSave">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">edit</param>
+        		<param name="id">${id}</param>
+			</result>
+        </action>
+        <action name="delete" class="com.webschool.action.UserAction" method="userDelete">
+        	<result name="success" type="redirectAction">userList</result>
+        </action>
+    </package>
+    
+</struts>

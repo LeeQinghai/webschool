@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<#include "header.html" />
+	<div>
+		<#list userList as user>
+			${user.userName}&nbsp;
+			<a href="${basePath}user/delete?id=${user.id}">delete</a>&nbsp;
+			<a href="${basePath}user/edit?id=${user.id}">edit</a><br>
+		</#list>
+	</div><br>
+	<div>
+		<a href="${basePath}user/register">add User</a>
+	</div>
+</body>
+</html>

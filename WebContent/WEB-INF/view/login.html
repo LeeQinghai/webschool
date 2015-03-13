@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="${path!}/css/login.css">
+	<title>Login</title>
+</head>
+<body>
+	<form action="login"  method="post" class="loginForm">
+		ID:<input type="text" name="userId" value="${userId!}">
+		Password:<input type="password" name="password" value="${password!}">
+		<input type="submit" value="Login">
+		${loginErrorMessage!}
+	</form>
+</body>
+</html>
